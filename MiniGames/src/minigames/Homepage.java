@@ -36,7 +36,7 @@ public class Homepage extends JFrame implements ActionListener {
     // ImageIcon image3 = new ImageIcon("");
 
     JButton btnGame1 = new JButton("Guessing Number");
-    JButton btnGame2 = new JButton("Hangman");
+    JButton btnGame2 = new JButton("Quiz");
     JButton btnGame3 = new JButton("Rock-Paper-Scissor");
 
     JPanel pnlHeading = new JPanel(new GridLayout(2, 1));
@@ -84,7 +84,7 @@ public class Homepage extends JFrame implements ActionListener {
         }
         if(ae.getSource()==btnGame2){
             frame.setVisible(false);
-            new Hangman();
+            new Quiz();
         }
         if(ae.getSource()==btnGame3){
             frame.setVisible(false);
