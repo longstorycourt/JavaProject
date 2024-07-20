@@ -11,6 +11,9 @@ import java.awt.Dimension;
 import java.awt.List;
 import java.util.Random;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
@@ -81,12 +84,34 @@ public class GuessNum extends JFrame implements ActionListener{
         btnRestart.addActionListener(this);
         btnQuit.addActionListener(this);
 
+        txtGuess.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent ke){
+                if(ke.getKeyCode()== KeyEvent.VK_ENTER)
+                    guessing();}
+        });
+
         x = random.nextInt(100)+1;
         tries = 0;     
     }
     public void actionPerformed(ActionEvent ae){
         if(ae.getSource()== btnGuess){
-            String record ="";
+            guessing();
+        }
+        if(ae.getSource()== btnQuit){
+            System.exit(0);
+        }
+        if(ae.getSource()== btnRestart){
+            txtRecord.removeAll();
+            txtRecord.add(header);
+            txtGuess.setText("");
+            txtGuess.setFocusable(true);
+            x = random.nextInt(100)+1;
+            tries = 0;
+        }
+    }
+
+    public void guessing(){
+        String record ="";
             String tooHigh = "Your guess is too high!";
             String tooLow = "Your guess is too low!";
             String correct = "Your guess is correct!";
@@ -106,18 +131,6 @@ public class GuessNum extends JFrame implements ActionListener{
             }
             txtGuess.setText("");
             txtGuess.requestFocus();
-        }
-        if(ae.getSource()== btnQuit){
-            System.exit(0);
-        }
-        if(ae.getSource()== btnRestart){
-            txtRecord.removeAll();
-            txtRecord.add(header);
-            txtGuess.setText("");
-            txtGuess.setFocusable(true);
-            x = random.nextInt(100)+1;
-            tries = 0;
-        }
     }
     public String record(){
         String msg = "";
