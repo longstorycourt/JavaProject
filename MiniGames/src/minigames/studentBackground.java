@@ -1,15 +1,15 @@
 package minigames;
 
+
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JScrollPane;
 
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.BorderLayout;
@@ -44,7 +44,8 @@ public class studentBackground extends JFrame implements ActionListener{
         JPanel pnlSelect = new JPanel();
         JPanel [] pnlInfo = new JPanel[7];
         JPanel pnlDisplay = new JPanel();
-        JPanel pnlContent = new JPanel();
+        
+        JScrollPane scrollPane;
         public studentBackground(ArrayList<studentInfo> st){
             super("");
             
@@ -57,13 +58,13 @@ public class studentBackground extends JFrame implements ActionListener{
                 jcbs[i].setBackground(Color.LIGHT_GRAY);
             } 
 
-            imgs[0] = new ImageIcon("Soklinda.jpg");
-            imgs[1] = new ImageIcon("Sathya.jpg");
-            imgs[2] = new ImageIcon("Kimlong.jpg");
-            imgs[3] = new ImageIcon("Bunleng.jpg");
-            imgs[4] = new ImageIcon("Kimhong.jpg");
-            imgs[5] = new ImageIcon("Pisal.jpg");
-            imgs[6] = new ImageIcon("Yut.jpg");
+            imgs[0] = new ImageIcon("MiniGames\\Bunleng.jpg");
+            imgs[1] = new ImageIcon("MiniGames\\Sathya.jpg");
+            imgs[2] = new ImageIcon("MiniGames\\Kimlong.jpg");
+            imgs[3] = new ImageIcon("MiniGames\\Bunleng.jpg");
+            imgs[4] = new ImageIcon("MiniGames\\Kimhong.jpg");
+            imgs[5] = new ImageIcon("MiniGames\\Pisal.jpg");
+            imgs[6] = new ImageIcon("MiniGames\\Yut.jpg");
 
             for(int i = 0; i<st.size(); i++){
                 lblImage[i]= new JLabel();
@@ -88,7 +89,6 @@ public class studentBackground extends JFrame implements ActionListener{
             pnlSelect.setBackground(Color.LIGHT_GRAY);
             pnlDisplay.setBackground(new Color(229,255, 204));
             pnlDisplay.setLayout(new BoxLayout(pnlDisplay, BoxLayout.Y_AXIS));
-            pnlDisplay.setVisible(true);            
 
             pnlSelect.add(lblTitle);
             for(int i = 0; i<st.size();i++){
@@ -97,71 +97,31 @@ public class studentBackground extends JFrame implements ActionListener{
             for(int i =0; i<st.size(); i++){
                 pnlDisplay.add(pnlInfo[i]);
             }
+            scrollPane = new JScrollPane(pnlDisplay);
             
             setLayout(new BorderLayout());
             add(pnlSelect, BorderLayout.WEST);
-            add(pnlDisplay, BorderLayout.CENTER);
+            add(scrollPane, BorderLayout.CENTER);
             setSize(500,500);
             setVisible(true);
             setLocationRelativeTo(null);
         }
         public void actionPerformed(ActionEvent ae){
-            if(jcbs[0].isSelected())
-                pnlInfo[0].setVisible(true);
-            else
-                pnlInfo[0].setVisible(false);
-
-            if(jcbs[1].isSelected())
-                pnlInfo[1].setVisible(true);
-            else
-                pnlInfo[1].setVisible(false);
-
-            if(jcbs[2].isSelected()){
-                pnlInfo[2].setVisible(true);
+            for(int i =0; i<jcbs.length; i++){
+                if(jcbs[i]!= null)
+                    pnlInfo[i].setVisible(jcbs[i].isSelected());
             }
-            else
-                pnlInfo[2].setVisible(false);
-
-            if(jcbs[3].isSelected()){
-                pnlInfo[3].setVisible(true);
-            }
-            else
-                pnlInfo[3].setVisible(false);
-
-            if(jcbs[4].isSelected()){
-                pnlInfo[4].setVisible(true);
-            }
-            else
-                pnlInfo[4].setVisible(false);
-
-            if(jcbs[5].isSelected()){
-                pnlInfo[5].setVisible(true);
-            }
-            else
-                pnlInfo[5].setVisible(false);
-            if(jcbs[6].isSelected()){
-                pnlInfo[6].setVisible(true);
-                }
-            else
-                pnlInfo[6].setVisible(false);
         }
     public static void main(String[] args){
         ArrayList<studentInfo> students = new ArrayList<>();
-        studentInfo st1 = new studentInfo("Pov Soklinda", "22", "F", "Reading, Writing");
-        studentInfo st2 = new studentInfo("Moeun Sathya", "19", "F", "Reading, Cooking");
-        studentInfo st3 = new studentInfo("Pov Kimlong", "20", "M", "Games, Music, movies");
-        studentInfo st4 = new studentInfo("Meng Bunleng", "21", "M", "Football, music");
-        studentInfo st5 = new studentInfo("Sreang Kimhong", "19", "M", "Games, music, movies");
-        studentInfo st6 = new studentInfo("Meng Pisal", "20", "M", "Games");
-        studentInfo st7 = new studentInfo("Mut Sopheakyut", "19", "M", "Games");
 
-        students.add(st1);
-        students.add(st2);
-        students.add(st3);
-        students.add(st4);
-        students.add(st5);
-        students.add(st6);
-        students.add(st7);
+        students.add(new studentInfo("Pov Soklinda", "22", "F", "Reading, Writing"));
+        students.add(new studentInfo("Moeun Sathya", "19", "F", "Reading, Cooking"));
+        students.add(new studentInfo("Pov Kimlong", "20", "M", "Games, Music, movies"));
+        students.add(new studentInfo("Meng Bunleng", "21", "M", "Football, music"));
+        students.add(new studentInfo("Sreang Kimhong", "19", "M", "Games, music, movies"));
+        students.add(new studentInfo("Meng Pisal", "20", "M", "Games"));
+        students.add(new studentInfo("Mut Sopheakyut", "19", "M", "Games"));
 
         new studentBackground(students);
     }

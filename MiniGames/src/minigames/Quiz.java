@@ -195,7 +195,6 @@ public class Quiz extends JFrame implements ActionListener{
 		nextQuestion();
 	}
 	public void nextQuestion() {
-		
 		if(index>=total_questions) {
 			results();
 		}
@@ -211,42 +210,39 @@ public class Quiz extends JFrame implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		buttonA.setEnabled(false);
+		buttonB.setEnabled(false);
+		buttonC.setEnabled(false);
+		buttonD.setEnabled(false);
 		
-			buttonA.setEnabled(false);
-			buttonB.setEnabled(false);
-			buttonC.setEnabled(false);
-			buttonD.setEnabled(false);
-			
-			if(e.getSource()==buttonA) {
-				answer= 'A';
-				if(answer == answers[index]) {
-					correct_guesses++;
-				}
+		if(e.getSource()==buttonA) {
+			answer= 'A';
+			if(answer == answers[index]) {
+				correct_guesses++;
 			}
-			if(e.getSource()==buttonB) {
-				answer= 'B';
-				if(answer == answers[index]) {
-					correct_guesses++;
-				}
+		}
+		if(e.getSource()==buttonB) {
+			answer= 'B';
+			if(answer == answers[index]) {
+				correct_guesses++;
 			}
-			if(e.getSource()==buttonC) {
-				answer= 'C';
-				if(answer == answers[index]) {
-					correct_guesses++;
-				}
+		}
+		if(e.getSource()==buttonC) {
+			answer= 'C';
+			if(answer == answers[index]) {
+				correct_guesses++;
 			}
-			if(e.getSource()==buttonD) {
-				answer= 'D';
-				if(answer == answers[index]) {
-					correct_guesses++;
-				}
+		}
+		if(e.getSource()==buttonD) {
+			answer= 'D';
+			if(answer == answers[index]) {
+				correct_guesses++;
 			}
-			displayAnswer();
+		}
+		displayAnswer();
 	}
 	public void displayAnswer() {
-		
 		timer.stop();
-		
 		buttonA.setEnabled(false);
 		buttonB.setEnabled(false);
 		buttonC.setEnabled(false);
@@ -262,10 +258,8 @@ public class Quiz extends JFrame implements ActionListener{
 			answer_labelD.setForeground(new Color(255,0,0));
 		
 		Timer pause = new Timer(2000, new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
 				answer_labelA.setForeground(new Color(25,255,0));
 				answer_labelB.setForeground(new Color(25,255,0));
 				answer_labelC.setForeground(new Color(25,255,0));
